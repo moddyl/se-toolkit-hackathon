@@ -4,7 +4,7 @@ A web app that lets users log their workouts and instantly see their progress th
 
 ## Demo
 
-> Add screenshots here after deployment
+> Screenshots go here after first deploy
 
 ## Product Context
 
@@ -12,43 +12,46 @@ A web app that lets users log their workouts and instantly see their progress th
 
 **Problem:** Most people don't track their workouts consistently because existing tools are too complex or expensive.
 
-**Solution:** FitLog provides a simple workout diary with progress charts, personal records, calorie estimation, water tracker, and nutrition targets — all personalised by gender, age and weight.
+**Solution:** FitLog provides a simple workout diary that automatically shows key stats — personal records per exercise, total weekly volume, and progress charts — so the user always knows if they're improving.
 
 ## Features
 
 ### Implemented
-- User authentication and registration
-- Dashboard with quick stats and navigation tiles
-- Create workouts with date and optional notes
-- Add exercises (weighted and bodyweight) with sets × reps format
-- 17 pre-loaded exercises, create custom ones
-- Progress charts: max weight and total volume over time
-- Personal records — best weight and reps per exercise
-- Calorie estimation based on workout volume and body weight
-- Water tracker — daily glasses with progress bar
-- Nutrition page — daily КБЖУ targets using Mifflin-St Jeor formula, personalised by gender
-- User profile — name, gender, age, weight, height, goal, activity level
-- Copy workout to today
-- Minimal black-and-white design
+- Create workouts with a date and optional notes
+- Add sets to a workout (exercise, weight, reps)
+- Create new exercises on the fly
+- View all workouts sorted by date
+- Delete workouts and individual sets
+- Progress charts: max weight and total volume per exercise over time
 
 ### Not yet implemented
+- User authentication
+- Personal records leaderboard
 - Weekly activity heatmap
 - Mobile-optimised layout
-- Push notifications / reminders
 
 ## Usage
 
-Open the app at `http://<your-server-ip>:3000` and:
+### Local development (without Docker)
 
-1. Go to **Profile** → fill in your name, gender, age, weight, height, goal
-2. Go to **Workouts** → create a new workout
-3. Add exercises — choose from the list or create your own
-4. View **Progress** charts after logging 2+ workouts with the same exercise
-5. Check **Records** for your personal bests
-6. Track daily water intake in **Water**
-7. See your daily calorie and macro targets in **Nutrition**
+**Backend:**
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+# set DATABASE_URL in .env first
+uvicorn main:app --reload
+```
 
-API docs available at: `http://<your-server-ip>:8000/docs`
+**Frontend:**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+API docs available at: `http://localhost:8000/docs`
 
 ## Deployment
 
@@ -57,7 +60,6 @@ API docs available at: `http://<your-server-ip>:8000/docs`
 - Docker and Docker Compose installed
 
 ### Install Docker on Ubuntu 24.04
-
 ```bash
 sudo apt-get update
 sudo apt-get install -y docker.io docker-compose-v2
@@ -69,13 +71,14 @@ newgrp docker
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/moddyl/se-toolkit-hackathon.git
+git clone https://github.com/<your-username>/se-toolkit-hackathon.git
 cd se-toolkit-hackathon
 ```
 
-2. Create `.env` file:
+2. Set the API URL so the frontend knows where to reach the backend.
+   Edit `frontend/vite.config.js` or set the env variable before building:
 ```bash
-cp .env.example .env
+export VITE_API_URL=http://<your-server-ip>:8000
 ```
 
 3. Build and start all services:
@@ -83,16 +86,21 @@ cp .env.example .env
 docker compose up --build -d
 ```
 
-4. Open in browser:
-   - Frontend: `http://10.93.24.140:3000`
-   - API docs: `http://10.93.24.140:8000/docs`
+4. Check everything is running:
+```bash
+docker compose ps
+```
 
-### Stop
+5. Open in browser:
+   - Frontend: `http://<your-server-ip>:3000`
+   - API docs: `http://<your-server-ip>:8000/docs`
+
+### Stop the app
 ```bash
 docker compose down
 ```
 
-### Reset all data
+### Stop and delete all data
 ```bash
 docker compose down -v
 ```

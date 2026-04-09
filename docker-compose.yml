@@ -19,9 +19,11 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://fitlog:fitlog@db:5432/fitlog
-      SECRET_KEY: ${SECRET_KEY}
-      QWEN_API_KEY: ${QWEN_API_KEY}
-      QWEN_MODEL: ${QWEN_MODEL:-qwen-plus}
+      QWEN_BASE_URL: ${QWEN_BASE_URL:-http://host.docker.internal:42005/v1}
+      QWEN_CODE_API_KEY: ${QWEN_CODE_API_KEY:-dummy}
+      QWEN_MODEL: ${QWEN_MODEL:-coder-model}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       db:
         condition: service_healthy
