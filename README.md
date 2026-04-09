@@ -4,7 +4,21 @@ A web app that lets users log their workouts and instantly see their progress th
 
 ## Demo
 
-> Add screenshots here after deployment
+![Скриншот 1](screenshots/Снимок%20экрана%202026-04-09%20183310.png)
+
+![Скриншот 2](screenshots/Снимок%20экрана%202026-04-09%20183316.png)
+
+![Скриншот 3](screenshots/Снимок%20экрана%202026-04-09%20183334.png)
+
+![Скриншот 4](screenshots/Снимок%20экрана%202026-04-09%20183348.png)
+
+![Скриншот 5](screenshots/Снимок%20экрана%202026-04-09%20183359.png)
+
+![Скриншот 6](screenshots/Снимок%20экрана%202026-04-09%20183409.png)
+
+![Скриншот 7](screenshots/Снимок%20экрана%202026-04-09%20183419.png)
+
+![Скриншот 8](screenshots/Снимок%20экрана%202026-04-09%20183428.png)
 
 ## Product Context
 
